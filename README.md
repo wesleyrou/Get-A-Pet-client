@@ -1,7 +1,12 @@
-# Petful Client
+# Get-A-Pet Client by Wesley Rou
 
+Get-A-Pet is a demo app for adopting pets in a queue.
 
+Live App: https://get-a-pet.vercel.app/
 
+## Technologies
+
+Get-A-Pet client uses the React framework. It also uses React Router for navigation.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
