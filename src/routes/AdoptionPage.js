@@ -16,27 +16,31 @@ class AdoptionPage extends React.Component{
   }
 
   fetchPeopleQueue = () => {
-    fetch(`${config.API_ENDPOINT}/people`)
+    fetch(`${config.REACT_APP_API_BASE}/people`)
     .then(res => res.json())
     .then(res => this.setState({people: res}))
     .catch(e => this.setState({error:e}))
   }
   
   fetchAdoptablePets = () => {
-    fetch(`${config.API_ENDPOINT}/pets`)
+    fetch(`${config.REACT_APP_API_BASE}/pets`)
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
+    .then(res => {      
       this.setState({cat: res[0],dog:res[1]})
     })
     .catch(e => this.setState({error:e}))
   }
 
-  handleJoinQueue = (e) => {
-    console.log(this.state.people)
-    const name = e.target.adopt.value
+  handleJoinQueue = async (e) => {
     e.preventDefault()
-      fetch(`${config.API_ENDPOINT}/people`,{
+
+    const name = e.target.adopt.value
+
+    if(this.state.people.length === 0){
+      await this.fetchPeopleQueue()
+    }
+    
+      fetch(`${config.REACT_APP_API_BASE}/people`,{
         method: 'POST',
         headers: {
           'content-type':'application/json',
@@ -80,7 +84,7 @@ class AdoptionPage extends React.Component{
   }
 
   handleAdopt = (whichPet) => {
-      fetch(`${config.API_ENDPOINT}/pets`,{
+      fetch(`${config.REACT_APP_API_BASE}/pets`,{
         method: 'DELETE',
         headers: {
           'content-type':'application/json',
@@ -97,7 +101,7 @@ class AdoptionPage extends React.Component{
         let newPeople = this.state.people
         newPeople.shift()
 
-        fetch(`${config.API_ENDPOINT}/pets`)
+        fetch(`${config.REACT_APP_API_BASE}/pets`)
         .then(res => res.json())
         //CLEAR INTERVAL IF FRONT OF LINE
         .then(res => (newPeople[0] === this.state.adopter)        
