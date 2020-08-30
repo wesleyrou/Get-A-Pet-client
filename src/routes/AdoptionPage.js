@@ -128,16 +128,16 @@ class AdoptionPage extends React.Component{
     // console.log(this.state.people,this.state.adopter)
     
     return (
-      <div>        
+      <div className='adoption-page-container'>
         {this.state.adopted && <div>You've adopted {this.state.adopted.name}</div>}
-        <div className='pet-container'>
+        <div className='pets-container'>
           {this.state.cat && <Pet key={1} whichPet={'cat'} handleAdopt={this.handleAdopt} frontOfLine={this.state.frontOfLine} {...this.state.cat}/>}
           {this.state.dog && <Pet key={2} whichPet={'dog'} handleAdopt={this.handleAdopt} frontOfLine={this.state.frontOfLine} {...this.state.dog}/>}
         </div>        
         
         {!this.state.people.includes(this.state.adopter)
         ?
-          <form onSubmit = {e => this.handleJoinQueue(e)}>
+          <form className='adopt-form' onSubmit = {e => this.handleJoinQueue(e)}>
           <legend hidden>Adoption Form</legend>
           <fieldset>
             <div>

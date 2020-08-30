@@ -1,7 +1,11 @@
 import React from 'react'
 
 const Header = () => {
-  return <h1>Petful</h1>
+  return (
+    <header className='Header'>
+      <h1>Get-A-Pet</h1>
+    </header>
+  )
 }
 
 
